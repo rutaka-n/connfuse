@@ -1,4 +1,10 @@
 language: ruby
 rvm:
-  - 2.1.5
+- 2.0
+- 2.1
+- 2.2
 before_install: gem install bundler -v 1.11.2
+addons:
+  code_climate:
+    repo_token:
+      secure: Fk7M9a95/0h2NcJ0rzencYnLwWjPjT5Uz5YC9nPaNC4Uho6/AlaGldqKnMxR/VeDyKgNxYJH4w5XOSP4xKrOmZAwNsQaU1u5pQJeZv6qbiD4BMC+c2VFzxfjnCjbf9jBhCY1ZUHhXCEr/mOLwPvplJnrkwhAVT5+LAK0qyQHDjeCPumTyO6N+E4jjNfobQRSlWwVK5JBZjDf5U++uDzYRKP2ih91ppzSdI59cTfwJ2MDvaDfobTO6388hZpPihRRgdcuE9/yIGA+JglNcJZHK4/S6xZBzkw874uZvRKHBGGTI4AxILzkMUpT5HsA6FNGotRFGDT04fFAJhpfZWzNQpoG5SMxxJidKt6s9C4qgc+D0R9Fuy8Tnuyrqtzg0yrc+I53xDAL+rw1FEA/GUMMVa5Q/Vsh/tH0Ylv5Nw0cfvrtQ5B7OQ0IWPY7+F1IlOcZPfYhFDwtnAaqh0tAamghL0/yrceR9plh+7P64zn2mRm9epay2SmFUnu0Iu8hY2VoRGr2CLsWuTVVc4IU1Ekkh4y2I6PmZ/GgNkCwEeBvOgRBqWfUru34LgXgf2cj7JMqDI9bpKTlW5FhJonhmZsMOV2R1d9A92jJEs4GUNj5wsIdb29MiN9JyfV2URWzgUdFOlBHraVJtD0Wzr11KqG5kfiHjBqZCvcHO5vDwSig9VU=
