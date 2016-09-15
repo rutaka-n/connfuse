@@ -1,20 +1,23 @@
 require 'spec_helper'
-require 'pry'
 
 describe Connfuse do
   it 'has a version number' do
     expect(Connfuse::VERSION).not_to be nil
   end
 
-  class TestClass
-    class TestError < StandardError; end
-    include Connfuse
+  context 'fuse_for wrapping methods via pass_thru' do
+    class TestClass
+      class TestError < StandardError; end
+      include Connfuse
 
-    def test(to_fail = nil)
-      raise TestError if to_fail
-      'result'
+      def test(to_fail = nil)
+        raise TestError if to_fail
+        'result'
+      end
+
+      fuse_for :test
     end
 
-    fuse_for :test
+    # TODO: write tests
   end
 end

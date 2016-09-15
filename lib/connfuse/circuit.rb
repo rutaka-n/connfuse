@@ -18,7 +18,7 @@ module Connfuse
       @status = :loaded
       @mutex = Mutex.new
 
-      @expected_errors << ConnfuseError
+      @expected_errors << CircuitError
     end
 
     def loaded?
