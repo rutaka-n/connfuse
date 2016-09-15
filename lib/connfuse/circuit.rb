@@ -1,8 +1,16 @@
 module Connfuse
-  class Circuit
-    attr_reader :status, :failure_count, :limit, :expected_errors, :last_failed_at, :last_error
+  class CircuitError < StandardError; end
 
-    def initialize(timeout: 5, limit: 5, expected_errors: [])
+  class Circuit
+    attr_reader :status,
+                :failure_count,
+                :timeout,
+                :limit,
+                :expected_errors,
+                :last_failed_at,
+                :last_error
+
+    def initialize(timeout: 15, limit: 5, expected_errors: [])
       @timeout = timeout
       @expected_errors = expected_errors
       @limit = limit
@@ -14,11 +22,11 @@ module Connfuse
     end
 
     def loaded?
-      :loaded == @status
+      :loaded == status
     end
 
     def broken?
-      :broken == @status
+      :broken == status
     end
 
     def break!
@@ -35,11 +43,27 @@ module Connfuse
     end
 
     def register_failure(error)
+      return if expected_errors.include? error
       @mutex.lock
       @failure_count += 1
       @last_error = error
       @last_failed_at = Time.now
       @mutex.unlock
+    end
+
+    def pass_thru
+      raise CircuitError if broken? && too_soon?
+      yield
+    rescue => e
+      register_failure(e)
+      break! if failure_count > limit
+      raise e
+    end
+
+    private
+
+    def too_soon?
+      Time.now < (last_failed_at + limit)
     end
   end
 end
