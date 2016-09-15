@@ -14,6 +14,11 @@ describe Connfuse::Circuit do
       circuit.break!
       expect { circuit.load! }.to change { circuit.status }.to(:loaded)
     end
+
+    it 'unset failure_count' do
+      circuit.register_failure(StandardError)
+      expect { circuit.load! }.to change { circuit.failure_count }.to(0)
+    end
   end
 
   describe '#loaded?' do

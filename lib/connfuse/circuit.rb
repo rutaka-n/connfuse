@@ -27,6 +27,7 @@ module Connfuse
 
     def load!
       @status = :loaded
+      @failure_count = 0
     end
 
     def register_failure(error)
