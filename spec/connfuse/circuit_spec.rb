@@ -33,4 +33,14 @@ describe Connfuse::Circuit do
       expect(circuit.broken?).to be true
     end
   end
+
+  describe '#register_failure' do
+    it 'increment failure_count and save error info' do
+      Timecop.freeze(Time.now) do
+        expect { circuit.register_failure(StandardError) }.to change { circuit.failure_count }.by(1)
+        expect(circuit.last_error).to be StandardError
+        expect(circuit.last_failed_at).to eq Time.now
+      end
+    end
+  end
 end
