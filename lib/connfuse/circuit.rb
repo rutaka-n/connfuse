@@ -22,18 +22,24 @@ module Connfuse
     end
 
     def break!
+      @mutex.lock
       @status = :broken
+      @mutex.unlock
     end
 
     def load!
+      @mutex.lock
       @status = :loaded
       @failure_count = 0
+      @mutex.unlock
     end
 
     def register_failure(error)
+      @mutex.lock
       @failure_count += 1
       @last_error = error
       @last_failed_at = Time.now
+      @mutex.unlock
     end
   end
 end
