@@ -1,7 +1,6 @@
 # Connfuse
 
 [![Build Status](https://travis-ci.org/rutaka-n/connfuse.svg?branch=master)](https://travis-ci.org/rutaka-n/connfuse) [![Code Climate](https://codeclimate.com/github/rutaka-n/connfuse/badges/gpa.svg)](https://codeclimate.com/github/rutaka-n/connfuse) [![Test Coverage](https://codeclimate.com/github/rutaka-n/connfuse/badges/coverage.svg)](https://codeclimate.com/github/rutaka-n/connfuse/coverage) [![Issue Count](https://codeclimate.com/github/rutaka-n/connfuse/badges/issue_count.svg)](https://codeclimate.com/github/rutaka-n/connfuse)
-
 Connfuse is a Ruby circuit breaker gem. It lets your application fail fast from failures of its service dependencies. It wraps calls to external services and monitors for failures.
 
 ## Installation

@@ -1,6 +1,8 @@
 require 'connfuse/version'
 
 module Connfuse
+  autoload :Circuit, 'connfuse/circuit'
+
   def self.included(base)
     base.extend ClassMethods
     def base.circuit(expected_errors: [], limit: 5, timeout: 15)
