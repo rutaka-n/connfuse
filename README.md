@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/rutaka-n/connfuse.svg?branch=master)](https://travis-ci.org/rutaka-n/connfuse) [![Code Climate](https://codeclimate.com/github/rutaka-n/connfuse/badges/gpa.svg)](https://codeclimate.com/github/rutaka-n/connfuse) [![Test Coverage](https://codeclimate.com/github/rutaka-n/connfuse/badges/coverage.svg)](https://codeclimate.com/github/rutaka-n/connfuse/coverage) [![Issue Count](https://codeclimate.com/github/rutaka-n/connfuse/badges/issue_count.svg)](https://codeclimate.com/github/rutaka-n/connfuse)
 
-Connfuse is a Ruby circuit breaker gem. It protects your application from failures of it's service dependencies. It wraps calls to external services and monitors for failures.
+Connfuse is a Ruby circuit breaker gem. It lets your application fail fast from failures of its service dependencies. It wraps calls to external services and monitors for failures.
 
 ## Installation
 
@@ -44,11 +44,16 @@ end
 Circuit will be initialized for your class automatically
 or you can specify parameters:
 ```ruby
+class Foo
+  include Connfuse
   circuit(limit: 5, timeout: 15, expected_errors: [SomeErrorClass])
+
+  # ...
+end
 ```
- - limit - count of tries to execute method before circuit will be broken.
- - timeout - specify time to fast failing your methods.
- - expected_errors - array of error's classes which do not count as errors of circuit.
+ - limit - count of attempts to execute method before circuit will be broken.
+ - timeout - specify time until the next attempt to execute methods when circuit is broken.
+ - expected_errors - array of error classes which do not count as errors of circuit.
 
 ## Development
 
