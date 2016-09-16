@@ -5,7 +5,7 @@ describe Connfuse do
     expect(Connfuse::VERSION).not_to be nil
   end
 
-  context 'fuse_for wrapping methods via pass_thru' do
+  describe '#fuse_for' do
     class TestClass
       class TestError < StandardError; end
       include Connfuse
@@ -18,6 +18,13 @@ describe Connfuse do
       fuse_for :test
     end
 
-    # TODO: write tests
+    subject { TestClass.new }
+
+    it 'wrapping methods via pass_thru' do
+      expect(TestClass.circuit.failure_count).to eq 0
+      expect(subject.test).to eq 'result'
+      expect { subject.test(true) }.to raise_error TestClass::TestError
+      expect(TestClass.circuit.failure_count).to eq 1
+    end
   end
 end
