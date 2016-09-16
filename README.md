@@ -48,7 +48,7 @@ or you can specify parameters:
 ```
  - limit - count of tries to execute method before circuit will be broken.
  - timeout - specify time to fast failing your methods.
- - expected_errors - array of error's classes which do not count how errors of circuit.
+ - expected_errors - array of error's classes which do not count as errors of circuit.
 
 ## Development
 
@@ -58,7 +58,7 @@ To install this gem onto your local machine, run `bundle exec rake install`. To 
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/connfuse. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
+Bug reports and pull requests are welcome on GitHub at https://github.com/rutaka-n/connfuse. This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 
 
 ## License
