@@ -2,9 +2,7 @@
 
 [![Build Status](https://travis-ci.org/rutaka-n/connfuse.svg?branch=master)](https://travis-ci.org/rutaka-n/connfuse) [![Code Climate](https://codeclimate.com/github/rutaka-n/connfuse/badges/gpa.svg)](https://codeclimate.com/github/rutaka-n/connfuse) [![Test Coverage](https://codeclimate.com/github/rutaka-n/connfuse/badges/coverage.svg)](https://codeclimate.com/github/rutaka-n/connfuse/coverage) [![Issue Count](https://codeclimate.com/github/rutaka-n/connfuse/badges/issue_count.svg)](https://codeclimate.com/github/rutaka-n/connfuse)
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/connfuse`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Connfuse is a Ruby circuit breaker gem. It protects your application from failures of it's service dependencies. It wraps calls to external services and monitors for failures.
 
 ## Installation
 
@@ -24,7 +22,33 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+You can use Circuit class directly:
+```ruby
+  circuit = Connfuse::Circuit.new
+  circuit.pass_thru do
+    some_transport.data.get(params)
+  end
+```
+Or you can include Connfuse module in your class and specify methods:
+```ruby
+class Foo
+  include Connfuse
+
+  def bar
+    # do something
+  end
+
+  fuse_for :bar
+end
+```
+Circuit will be initialized for your class automatically
+or you can specify parameters:
+```ruby
+  circuit(limit: 5, timeout: 15, expected_errors: [SomeErrorClass])
+```
+ - limit - count of tries to execute method before circuit will be broken.
+ - timeout - specify time to fast failing your methods.
+ - expected_errors - array of error's classes which do not count how errors of circuit.
 
 ## Development
 
