@@ -9,9 +9,9 @@ Gem::Specification.new do |spec|
   spec.authors       = ['rutaka-n']
   spec.email         = ['rutaka.nashimo@yandex.ru']
 
-  spec.summary       = 'Simple circuit breaker pattern in ruby.'
-  spec.description   = 'Connfuse is a Ruby circuit breaker gem.' \
-                       "It lest your application fail fast of its service dependencies." \
+  spec.summary       = 'Simple circuit breaker pattern in Ruby.'
+  spec.description   = 'Connfuse is a Ruby circuit breaker gem. ' \
+                       'It lets your application fail fast from its service dependencies. ' \
                        'It wraps calls to external services and monitors for failures.'
   spec.homepage      = 'https://github.com/rutaka-n/connfuse'
   spec.license       = 'MIT'

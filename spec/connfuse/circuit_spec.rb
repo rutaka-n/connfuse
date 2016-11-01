@@ -5,18 +5,18 @@ describe Connfuse::Circuit do
   subject(:circuit) { described_class.new(expected_errors: [ExpectedError]) }
 
   describe '#break!' do
-    it 'change status to :broken' do
+    it 'changes status to :broken' do
       expect { circuit.break! }.to change { circuit.status }.to(:broken)
     end
   end
 
   describe '#load!' do
-    it 'change status to :loaded' do
+    it 'changes status to :loaded' do
       circuit.break!
       expect { circuit.load! }.to change { circuit.status }.to(:loaded)
     end
 
-    it 'unset failure_count' do
+    it 'unsets failure_count' do
       circuit.register_failure(StandardError)
       expect { circuit.load! }.to change { circuit.failure_count }.to(0)
     end
@@ -41,7 +41,7 @@ describe Connfuse::Circuit do
   end
 
   describe '#register_failure' do
-    it 'increment failure_count and save error info' do
+    it 'increments failure_count and saves error info' do
       Timecop.freeze(Time.now) do
         expect { circuit.register_failure(StandardError) }.to change { circuit.failure_count }.by(1)
         expect(circuit.last_error).to be StandardError
@@ -49,7 +49,7 @@ describe Connfuse::Circuit do
       end
     end
 
-    it 'do not register expected_errors' do
+    it 'does not register expected_errors' do
       expect { circuit.register_failure(ExpectedError) }.not_to change { circuit.failure_count }
     end
   end
@@ -70,11 +70,11 @@ describe Connfuse::Circuit do
       circuit.pass_thru { method.call(true) }
     end
 
-    it 'yield block' do
+    it 'yields the block' do
       expect(passed).to eq(method.call)
     end
 
-    it 'keep circuit loaded while failure count less then limit' do
+    it 'keeps circuit loaded while failure count remains under the limit' do
       5.times do |time|
         expect { failed }.to raise_error
         expect(circuit.failure_count).to eq(time + 1)
@@ -84,14 +84,14 @@ describe Connfuse::Circuit do
       expect(circuit.loaded?).to be false
     end
 
-    it 'raise error if circuit broken' do
+    it 'raises an error if circuit is broken' do
       circuit.register_failure(StandardError)
       circuit.break!
       expect { passed }.to raise_error Connfuse::CircuitError
       expect { failed }.to raise_error Connfuse::CircuitError
     end
 
-    it 'yield block again when timeout reached' do
+    it 'yields the block again when timeout is reached' do
       Timecop.freeze(Time.now)
       circuit.register_failure(StandardError)
       circuit.break!
