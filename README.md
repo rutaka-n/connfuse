@@ -1,6 +1,10 @@
 # Connfuse
 
-[![Build Status](https://travis-ci.org/rutaka-n/connfuse.svg?branch=master)](https://travis-ci.org/rutaka-n/connfuse) [![Code Climate](https://codeclimate.com/github/rutaka-n/connfuse/badges/gpa.svg)](https://codeclimate.com/github/rutaka-n/connfuse) [![Test Coverage](https://codeclimate.com/github/rutaka-n/connfuse/badges/coverage.svg)](https://codeclimate.com/github/rutaka-n/connfuse/coverage) [![Issue Count](https://codeclimate.com/github/rutaka-n/connfuse/badges/issue_count.svg)](https://codeclimate.com/github/rutaka-n/connfuse)
+[![Build Status](https://travis-ci.org/rutaka-n/connfuse.svg?branch=master)](https://travis-ci.org/rutaka-n/connfuse)
+[![Code Climate](https://codeclimate.com/github/rutaka-n/connfuse/badges/gpa.svg)](https://codeclimate.com/github/rutaka-n/connfuse)
+[![Test Coverage](https://codeclimate.com/github/rutaka-n/connfuse/badges/coverage.svg)](https://codeclimate.com/github/rutaka-n/connfuse/coverage)
+[![Issue Count](https://codeclimate.com/github/rutaka-n/connfuse/badges/issue_count.svg)](https://codeclimate.com/github/rutaka-n/connfuse)
+
 Connfuse is a Ruby circuit breaker gem. It lets your application fail fast from failures of its service dependencies. It wraps calls to external services and monitors for failures.
 
 ## Installation
@@ -50,7 +54,7 @@ class Foo
   # ...
 end
 ```
- - limit - count of attempts to execute method before circuit will be broken.
+ - limit - number of attempts to execute method before circuit will be broken.
  - timeout - specify time until the next attempt to execute methods when circuit is broken.
  - expected_errors - array of error classes which do not count as errors of circuit.
 
@@ -68,4 +72,3 @@ Bug reports and pull requests are welcome on GitHub at https://github.com/rutaka
 ## License
 
 The gem is available as open source under the terms of the [MIT License](http://opensource.org/licenses/MIT).
-

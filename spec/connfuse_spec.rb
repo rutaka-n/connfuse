@@ -20,7 +20,7 @@ describe Connfuse do
 
     subject { TestClass.new }
 
-    it 'wrapping methods via pass_thru' do
+    it 'wraps methods in pass_thru' do
       expect(TestClass.circuit.failure_count).to eq 0
       expect(subject.test).to eq 'result'
       expect { subject.test(true) }.to raise_error TestClass::TestError
